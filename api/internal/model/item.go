@@ -8,5 +8,5 @@ type Item struct {
 	Description string             `bson:"description" json:"description"`
 	Price       float64            `bson:"price" json:"price"`
 	Quantity    int                `bson:"quantity" json:"quantity"`
-	Tags        []string           `bson:"category" json:"category"`
+	Tags        []string           `bson:"tags" json:"tags"`
 }
