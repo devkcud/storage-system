@@ -3,11 +3,11 @@ package collection
 import (
 	"github.com/devkcud/storage-system/api/internal/connection"
 	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type Generic struct {
-	connection *connection.Connection
-	name       string
+	collection *mongo.Collection
 }
 
 type Types interface {
@@ -15,7 +15,7 @@ type Types interface {
 }
 
 func New[T Types](connection *connection.Connection, name string) *T {
-	return &T{Generic{connection, name}}
+	return &T{Generic{connection.Database.Collection(name)}}
 }
 
 func (*Generic) Test(c *gin.Context) {
