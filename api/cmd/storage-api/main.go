@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/devkcud/storage-system/api/internal/collection"
 	"github.com/devkcud/storage-system/api/internal/connection"
 	"github.com/gin-gonic/gin"
 )
@@ -24,9 +25,12 @@ func main() {
 
 	log.Println("Connected to MongoDB")
 
-	gin.SetMode(gin.ReleaseMode)
+	collectionItems := collection.New[collection.Item](client, "items")
 
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
+
+	router.GET("/", collectionItems.Test)
 
 	go func() {
 		log.Println("Starting API server")
