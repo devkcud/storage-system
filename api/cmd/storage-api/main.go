@@ -32,7 +32,7 @@ func main() {
 
 	router.GET("/", collectionItems.GetAll)
 	router.GET("/:id", collectionItems.GetSpecific)
-	router.POST("/", collectionItems.Create)
+	router.POST("/", collectionItems.Post)
 	router.PATCH("/", collectionItems.Test)
 	router.DELETE("/", collectionItems.Test)
 

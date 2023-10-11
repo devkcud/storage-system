@@ -13,7 +13,7 @@ type Item struct {
 	Generic
 }
 
-func (i *Item) Create(c *gin.Context) {
+func (i *Item) Post(c *gin.Context) {
 	var item model.Item
 
 	if err := c.BindJSON(&item); err != nil {
