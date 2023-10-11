@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/devkcud/storage-system/api/internal/connection"
 	"github.com/gin-gonic/gin"
@@ -19,13 +22,25 @@ func main() {
 
 	client.SetDatabase("storage")
 
+	log.Println("Connected to MongoDB")
+
 	gin.SetMode(gin.ReleaseMode)
 
 	router := gin.Default()
 
-	if err := router.Run(fmt.Sprintf(":%d", API_PORT)); err != nil {
-		log.Fatal(err)
-	}
+	go func() {
+		log.Println("Starting API server")
 
+		if err := router.Run(fmt.Sprintf(":%d", API_PORT)); err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
+
+	<-sigChan // So it properly exits (CTRL + C)
+
+	log.Println("Goodbye! Closing MongoDB connection")
 	defer client.Close()
 }
