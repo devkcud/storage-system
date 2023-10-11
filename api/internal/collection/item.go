@@ -27,7 +27,7 @@ func (i *Item) Create(c *gin.Context) {
 
 	i.collection.InsertOne(c.Request.Context(), item)
 
-	c.JSON(http.StatusBadRequest, gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"status":  "success",
 		"message": "Item created",
 	})
