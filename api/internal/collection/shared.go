@@ -1,6 +1,8 @@
 package collection
 
 import (
+	"net/http"
+
 	"github.com/devkcud/storage-system/api/internal/connection"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -19,5 +21,8 @@ func New[T Types](connection *connection.Connection, name string) *T {
 }
 
 func (*Generic) Test(c *gin.Context) {
-	c.JSON(200, gin.H{"message": "Hello, world!"})
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"message": "Hello, world!",
+	})
 }
