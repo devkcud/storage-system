@@ -33,7 +33,7 @@ func main() {
 	router.GET("/", collectionItems.GetAll)
 	router.GET("/:id", collectionItems.GetSpecific)
 	router.POST("/", collectionItems.Post)
-	router.PATCH("/", collectionItems.Test)
+    router.PATCH("/:id", collectionItems.Patch)
 	router.DELETE("/", collectionItems.Test)
 
 	go func() {
