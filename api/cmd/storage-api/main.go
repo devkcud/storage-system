@@ -31,6 +31,9 @@ func main() {
 	router := gin.Default()
 
 	router.GET("/", collectionItems.Test)
+	router.POST("/", collectionItems.Create)
+	router.PATCH("/", collectionItems.Test)
+	router.DELETE("/", collectionItems.Test)
 
 	go func() {
 		log.Println("Starting API server")
