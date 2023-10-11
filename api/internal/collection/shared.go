@@ -21,8 +21,5 @@ func New[T Types](connection *connection.Connection, name string) *T {
 }
 
 func (*Generic) Test(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"status":  "success",
-		"message": "Hello, world!",
-	})
+	c.JSON(http.StatusOK, gin.H{"message": "Hello, world!"})
 }
