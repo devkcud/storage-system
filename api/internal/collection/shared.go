@@ -10,7 +10,11 @@ type Generic struct {
 	name       string
 }
 
-func New[T interface{Item}](connection *connection.Connection, name string) *T {
+type Types interface {
+	Item
+}
+
+func New[T Types](connection *connection.Connection, name string) *T {
 	return &T{Generic{connection, name}}
 }
 
