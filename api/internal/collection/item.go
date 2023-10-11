@@ -98,3 +98,19 @@ func (i *Item) Patch(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Item updated"})
 }
+
+func (i *Item) Delete(c *gin.Context) {
+	id, err := primitive.ObjectIDFromHex(c.Param("id"))
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid ID"})
+		return
+	}
+
+	if _, err := i.collection.DeleteOne(c.Request.Context(), bson.M{"_id": id}); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Error deleting item: " + err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Item deleted"})
+}

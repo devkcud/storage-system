@@ -34,7 +34,7 @@ func main() {
 	router.GET("/:id", collectionItems.GetSpecific)
 	router.POST("/", collectionItems.Post)
     router.PATCH("/:id", collectionItems.Patch)
-	router.DELETE("/", collectionItems.Test)
+    router.DELETE("/:id", collectionItems.Delete)
 
 	go func() {
 		log.Println("Starting API server")
