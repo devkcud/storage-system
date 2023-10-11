@@ -30,7 +30,8 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
-	router.GET("/", collectionItems.Test)
+	router.GET("/", collectionItems.GetAll)
+	router.GET("/:id", collectionItems.GetSpecific)
 	router.POST("/", collectionItems.Create)
 	router.PATCH("/", collectionItems.Test)
 	router.DELETE("/", collectionItems.Test)
