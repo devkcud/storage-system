@@ -21,7 +21,7 @@
     $: total = writable(0);
 
     onMount(async () => {
-        const response = await fetch('http://192.168.0.182:8080/', { method: 'GET' });
+        const response = await fetch('http://localhost:8080/', { method: 'GET' });
         items = await response.json();
 
         $total = items.reduce((acc, item) => acc + item.pricePerUnit * item.quantity, 0);
