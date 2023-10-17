@@ -18,13 +18,13 @@
         tags: string[];
     }[];
 
-    $: total = writable(0);
+    let loading = true;
 
     onMount(async () => {
         const response = await fetch('http://localhost:8080/', { method: 'GET' });
         items = await response.json();
 
-        $total = items.reduce((acc, item) => acc + item.pricePerUnit * item.quantity, 0);
+        loading = false;
     });
 </script>
 
@@ -66,6 +66,8 @@
             </div>
         {/each}
     </div>
+{:else if loading}
+    <p class="center dimmed">Loading items...</p>
 {:else}
-    <p id="loading">Loading items...</p>
+    <p class="center dimmed">Ain't nobody here but us chickens (no items found)</p>
 {/if}

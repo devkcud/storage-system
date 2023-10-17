@@ -3,8 +3,14 @@ h1#title {
     text-align: center;
 }
 
-p#loading {
+p.center {
     text-align: center;
+}
+
+p.dimmed {
+    color: #888;
+
+    font-style: italic;
 }
 
 #products {
