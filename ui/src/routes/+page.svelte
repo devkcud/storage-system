@@ -9,6 +9,8 @@
     import FaSearch from 'svelte-icons/fa/FaSearch.svelte';
     // @ts-ignore
     import FaPen from 'svelte-icons/fa/FaPen.svelte';
+    // @ts-ignore
+    import FaEye from 'svelte-icons/fa/FaEye.svelte';
 
     interface Item {
         id: string;
@@ -74,35 +76,48 @@
     <div id="products">
         {#each filteredItems as item}
             <div class="card">
-                <header>
-                    <h2>{item.name}</h2>
-
-                    <div>
-                        <a class="edit" href="/item/{item.id}/edit">
-                            <FaPen />
-                        </a>
-                        <a class="trash" href="/item/{item.id}/delete">
-                            <FaTrash />
-                        </a>
-                    </div>
-                </header>
-
-                <div class="information">
-                    <span class="quantity">Stock: <b>{item.quantity}</b></span>
-                    <span class="price">Unit: <b>R${item.pricePerUnit.toFixed(2)}</b></span>
+                <div class="image">
+                    <img src="https://placehold.co/150" alt="Product" />
+                    <p>Product image</p>
                 </div>
+                <div class="content">
+                    <header>
+                        <h2>{item.name}</h2>
+                    </header>
 
-                <p>{item.description}</p>
+                    <div class="information">
+                        <span class="quantity">Stock: <b>{item.quantity}</b></span>
+                        <span class="price">Unit: <b>R${item.pricePerUnit.toFixed(2)}</b></span>
+                    </div>
 
-                {#if item.tags != null && item.tags.length > 0}
-                    <ul>
-                        {#each item.tags as tag}
-                            <li>{tag}</li>
-                        {/each}
+                    <p class="description">{item.description}</p>
+
+                    {#if item.tags != null && item.tags.length > 0}
+                        <ul class="tags">
+                            {#each item.tags as tag}
+                                <li>{tag}</li>
+                            {/each}
+                        </ul>
+                    {/if}
+
+                    <ul class="actions">
+                        <li>
+                            <a class="button" href="/item/{item.id}">
+                                <FaEye />
+                            </a>
+                        </li>
+                        <li>
+                            <a class="button trash" href="/item/{item.id}/delete">
+                                <FaTrash />
+                            </a>
+                        </li>
+                        <li>
+                            <a class="button edit" href="/item/{item.id}/edit">
+                                <FaPen />
+                            </a>
+                        </li>
                     </ul>
-                {/if}
-
-                <a href="/item/{item.id}">Manage product</a>
+                </div>
             </div>
         {/each}
     </div>
