@@ -113,3 +113,25 @@ p.dimmed {
         width: calc(100% - 2rem);
     }
 }
+
+#search {
+    display: flex;
+
+    gap: 0.2rem;
+
+    width: 300px;
+    margin: 1rem auto;
+    padding: 0.01rem 1rem;
+
+    border: 1px solid #ccc;
+    border-radius: 100px;
+
+    input {
+        border: none;
+        outline: none;
+    }
+
+    svg {
+        width: 30px;
+    }
+}
