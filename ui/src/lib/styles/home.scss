@@ -1,6 +1,10 @@
+@use './colors' as color;
+
 h1#title {
     margin: 1rem;
     text-align: center;
+
+    color: color.$font;
 }
 
 p.center {
@@ -8,7 +12,7 @@ p.center {
 }
 
 p.dimmed {
-    color: #888;
+    color: color.$font-dimmed;
 
     font-style: italic;
 }
@@ -35,13 +39,13 @@ p.dimmed {
 
     border-radius: 10px;
 
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0px 10px color.$shadow;
 
     div.image {
         p {
             text-align: center;
 
-            color: #888;
+            color: color.$font-dimmed;
             font-style: italic;
         }
 
@@ -63,29 +67,6 @@ p.dimmed {
         justify-content: center;
     }
 
-    header {
-        display: flex;
-        justify-content: space-between;
-
-        a {
-            color: #888;
-
-            transition: color 0.2s;
-
-            svg {
-                width: 20px;
-            }
-
-            &:hover {
-                color: #000;
-
-                &.trash {
-                    color: red;
-                }
-            }
-        }
-    }
-
     ul {
         list-style: none;
 
@@ -100,8 +81,8 @@ p.dimmed {
         right: 1rem;
 
         li {
-            background: #000;
-            color: #fff;
+            background-color: color.$primary-200;
+            color: color.$font-light;
 
             padding: 0.2rem 0.5rem;
 
@@ -145,8 +126,8 @@ p.dimmed {
         width: 40px;
         height: 40px;
 
-        background: #000;
-        color: #fff;
+        background-color: color.$primary-100;
+        color: color.$font-light;
 
         text-decoration: none;
 
@@ -154,7 +135,7 @@ p.dimmed {
 
         border-radius: 5px;
 
-        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0px 10px color.$shadow;
 
         transition:
             color 0.2s ease-in-out,
@@ -162,12 +143,15 @@ p.dimmed {
 
         &:hover {
             &.trash {
-                background-color: red;
-                color: #000;
+                background-color: color.$danger;
             }
 
-            background-color: #fff;
-            color: #000;
+            &.edit {
+                background-color: color.$success;
+            }
+
+            background-color: color.$primary-200;
+            color: color.$font-light;
         }
     }
 }
@@ -181,7 +165,7 @@ p.dimmed {
     margin: 1rem auto;
     padding: 0.01rem 1rem;
 
-    border: 1px solid #ccc;
+    border: 1px solid color.$font;
     border-radius: 100px;
 
     transition: max-width 0.2s;
@@ -194,6 +178,7 @@ p.dimmed {
     }
 
     svg {
+        color: color.$font;
         width: 20px;
     }
 
