@@ -1,0 +1,45 @@
+@use './colors' as color;
+
+button#go-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    color: color.$font-light;
+    background-color: color.$primary-100;
+
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+
+    opacity: 0.5;
+
+    transition: opacity 0.2s;
+
+    border: none;
+    outline: none;
+
+    border-radius: 100%;
+
+    padding: 0.5rem;
+
+    cursor: pointer;
+
+    svg {
+        width: 16px;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+main#item-holder {
+    max-width: 900px;
+    min-height: 100vh;
+
+    margin-inline: auto;
+
+    padding: 1rem;
+}
