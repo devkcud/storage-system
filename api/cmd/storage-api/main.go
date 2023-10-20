@@ -9,6 +9,7 @@ import (
 
 	"github.com/devkcud/storage-system/api/internal/collection"
 	"github.com/devkcud/storage-system/api/internal/connection"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,6 +30,12 @@ func main() {
 
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
+
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:5173"} // Allow UI's origin
+	config.AllowMethods = []string{"GET", "POST", "PATCH", "DELETE"}
+
+	router.Use(cors.New(config))
 
 	router.GET("/", collectionItems.GetAll)
 	router.GET("/:id", collectionItems.GetSpecific)

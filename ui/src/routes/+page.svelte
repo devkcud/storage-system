@@ -36,8 +36,6 @@
         } finally {
             loading = false;
         }
-
-        filteredItems = items;
     });
 
     function filterItems() {
@@ -72,7 +70,7 @@
     />
 </div>
 
-{#if filteredItems.length > 0}
+{#if items.length > 0}
     <div id="products">
         {#each filteredItems as item}
             <div class="card">
