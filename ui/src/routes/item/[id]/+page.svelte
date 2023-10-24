@@ -36,7 +36,7 @@
 {#if item}
     <div class="content">
         <header>
-            <h2>{item.name}</h2>
+            <h1>{item.name}</h1>
         </header>
 
         <h2>Information</h2>
