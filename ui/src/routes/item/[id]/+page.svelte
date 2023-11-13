@@ -2,7 +2,9 @@
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
 
+    // @ts-ignore
     import FaTrash from 'svelte-icons/fa/FaTrash.svelte';
+    // @ts-ignore
     import FaPen from 'svelte-icons/fa/FaPen.svelte';
 
     interface Item {
@@ -37,41 +39,42 @@
     <div class="content">
         <header>
             <h1>{item.name}</h1>
+
+            <div class="information">
+                <span class="quantity">Stock: <b>{item.quantity}</b></span>
+                <span class="price">Unit: <b>R${item.pricePerUnit.toFixed(2)}</b></span>
+                <span class="price">
+                    Total: <b>R${(item.pricePerUnit * item.quantity).toFixed(2)}</b>
+                </span>
+            </div>
         </header>
 
-        <h2>Information</h2>
-        <div class="information">
-            <span class="quantity">Stock: <b>{item.quantity}</b></span>
-            <span class="price">Unit: <b>R${item.pricePerUnit.toFixed(2)}</b></span>
+        <div class="description">
+            <h2>Description</h2>
+            <p class="description">{item.description}</p>
         </div>
 
-        <h2>Description</h2>
-        <p class="description">{item.description}</p>
-
-        <h2>Tags</h2>
-        {#if item.tags != null && item.tags.length > 0}
-            <ul class="tags">
+        <div class="tags">
+            {#if item.tags != null && item.tags.length > 0}
                 {#each item.tags as tag}
-                    <li>{tag}</li>
+                    <p>{tag}</p>
                 {/each}
-            </ul>
-        {/if}
-    </div>
+            {:else}
+                <p class="no-tags">No tags</p>
+            {/if}
+        </div>
 
-    <h2>Actions</h2>
-    <ul class="actions">
-        <li>
+        <div class="actions">
             <a class="button trash" href="/item/{$page.params.id}/delete">
                 <FaTrash />
                 Delete
             </a>
-
             <a class="button" href="/item/{$page.params.id}/edit">
                 <FaPen />
                 Edit
             </a>
-        </li>
-    </ul>
+        </div>
+    </div>
 {:else if loading}
     <p>Loading item...</p>
 {:else}
