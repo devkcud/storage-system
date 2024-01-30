@@ -1,4 +1,4 @@
-# Storage System
+# Storage System - Discontinued
 
 Fullstack application for managing a storage/inventory system.
 
